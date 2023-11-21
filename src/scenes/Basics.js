@@ -50,7 +50,7 @@ class Basics extends Phaser.Scene {
         })
         //create tween chain
         let pearTweenChain = this.tweens.chain({
-            target: verygoodpear, 
+            targets: verygoodpear, 
             ease: 'Bounce.easeOut',
             loop: 1,
             paused: false,
@@ -59,27 +59,47 @@ class Basics extends Phaser.Scene {
                 x : w - 64,
                 duration : 500
             },
+            {  
+                
+                angle: { from: 0, to: 90 },
+                duration : 500
+            },
             {     
                 y : h - 64,
                 duration : 1000,
                 ease : 'Sine.easeOut',
             }, 
             
+            {  
+                
+                angle: { from: 90, to: 180 },
+                duration : 500
+            },
             {
                 x : 64,
                 duration : 1500
+            },            
+            {    
+                angle: { from: 180, to: 270 },
+                duration : 500
             },
             {
                 y : 64,
                 duration : 1000
-            }
+            },                        
+            {    
+                angle: { from: 270, to: 360 },
+                duration : 500
+            },
             ]
         })
         //add mouse input 
         this.input.on('pointerdown', () => {
             pearTweenChain.restart()
             verygoodpear.setPosition(64, 64)
+            verygoodpear.setAngle(0)
         })
+
         // enable scene reload key
         this.reload = this.input.keyboard.addKey('R')
 
